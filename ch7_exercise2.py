@@ -1,0 +1,19 @@
+# Write a program that prompts for a file name, then opens that file and reads through the file, 
+# looking for lines of the form:
+# X-DSPAM-Confidence:    0.8475
+# Count these lines and extract the floating point values from each of the lines and compute the 
+# average of those values and produce an output as shown below.
+
+# Use the file name mbox-short.txt as the file name
+fname = input("Enter file name: ")
+fh = open(fname)
+count = 0
+aline = 0
+for line in fh:
+    if not line.startswith("X-DSPAM-Confidence:"):
+        continue
+    rline = line.replace("X-DSPAM-Confidence:", '')
+    sline = float(rline.rstrip())
+    count = count + 1
+    aline = aline + sline
+print("Average spam confidence:", aline / count)l
